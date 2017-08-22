@@ -84,15 +84,17 @@ The figure below shows the windows from multiple scales drawn on a test image.
 
 ![png](./output_images/sliding_window.png)
 
-This is what the result from final implementation looks like:
-
-![png](./output_images/final.png)
-
-After this,  add_heat function is applied. This function increments the pixel value (referred to as "heat") of an all-black image the size of the original image at the location of each detection rectangle. Areas encompassed by more overlapping rectangles are assigned higher levels of heat. The following image is the resulting heatmap from the detections in the image above:
+After selecting the windows with car detected, `add_heat` function is applied to those windows. This function increments the pixel value (referred to as "heat") of an all-black image the size of the original image at the location of each detection rectangle. Areas encompassed by more overlapping rectangles are assigned higher levels of heat. The following image is the resulting heatmap from the detections in the image above:
 
 ![png](./output_images/heatmap.png)
 
-A threshold function is applied to remove false positives.
+A threshold function is then applied to remove false positives.
+
+![png](./output_images/labels.png)
+
+The final result looks like this:
+
+![png](./output_images/test_img_results.png)
 
 ## Video Implementation
 ---
