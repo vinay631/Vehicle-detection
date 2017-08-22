@@ -27,7 +27,7 @@ The code for HOG feature extraction can be found in the above jupyter notebook i
 I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes:
 
 
-![png](./output_images/output_3_1.png)
+![Car Non car](./output_images/car_non_car.png)
 
 
 I then explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
@@ -35,7 +35,7 @@ I then explored different color spaces and different `skimage.hog()` parameters 
 Here is an example using the `YCrCb` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
 
 
-![png](./output_images/output_5_1.png)
+![HOG features](./output_images/hog.png)
 
 
 ### 2. Feature Extraction for Model
@@ -71,22 +71,26 @@ For training the model hog features along with spatial and histogram features we
 ---
 
 ### 1. Sliding Window Search
-I reused the `find_cars` method from course materials. This method can be found in cell 5 of the above notebook. This method combines HOG feature extraction with a sliding window search. The HOG features are extracted for the entire image only once and the features for each small window is sampled from HOG feature of the whole image. The method performs the classifier prediction on the HOG features, histogram feature and spatial featurefor each window region and returns a list of rectangle where the cars were detected.
+I reused the `find_cars` method from course materials. This method can be found in cell 5 of the above notebook. This method combines HOG feature extraction with a sliding window search. The HOG features are extracted for the entire image only once and the features for each small window is sampled from HOG feature of the whole image. The method performs the classifier prediction on the HOG features, histogram feature and spatial feature for each window region and returns a list of rectangle where the cars were detected.
 
 This is an example of such image.:
 
-![png](./output_images/output_10_1.png)
+![png](./output_images/car_detected.png)
 
 In the final code for pipeline (cell 24), I used multiple sliding window search using different scales and x, y positions. The values for these parameters were found emperically by running find_cars method multiple times. This approach also prevents calculation of feature vectors for the complete image and thus helps in speeding up the process.
 
 The figure below shows the windows from multiple scales drawn on a test image.
 
 
-![png](./output_images/output_12_0.png)
+![png](./output_images/sliding_window.png)
 
 This is what the result from final implementation looks like:
 
+![png](./output_images/final.png)
+
 After this,  add_heat function is applied. This function increments the pixel value (referred to as "heat") of an all-black image the size of the original image at the location of each detection rectangle. Areas encompassed by more overlapping rectangles are assigned higher levels of heat. The following image is the resulting heatmap from the detections in the image above:
+
+![png](./output_images/heatmap.png)
 
 A threshold function is applied to remove false positives.
 
