@@ -100,7 +100,7 @@ A threshold function is applied to remove false positives.
 ### 1. Vehicle Detection
 The youtube video of the final implementation can be accessed by clicking the following image link.
 
-![VehicleDetection](https://www.youtube.com/watch?v=gnnHQkbS_0c)
+[https://www.youtube.com/watch?v=gnnHQkbS_0c]
 
 
 
